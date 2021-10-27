@@ -10,8 +10,6 @@ with open("/home/pi/Documents/TTIP/config.json") as file:
     config = json_load(file)
     file.close()
 
-np.random.seed(int(config["seed"]))
-
 fig, ax = plt.subplots()
 
 
@@ -20,6 +18,7 @@ fig, ax = plt.subplots()
 
 class Control:
     def __init__(self):
+        np.random.seed(int(config["seed"]))
         self.shapelist = 'squiggle', 'squiggle', 'line', 'squares', 'thicc_line'#,"line","dots","triangles","image"]
     def draw_random(self, key_int):
         for i in range(key_int):
