@@ -67,12 +67,10 @@ class Control:
         plt.clf()
         plt.show()
 
-canvas_control = Control()
+with open(config["filepath"]+config["dictionary"],"r+") as dic:
+    wordlist_str = dic.read()
+    dic.close()
 
-dic= open(config["filepath"]+config["dictionary"],"r+")
-wordlist_str = dic.read()
-
-dic.close()
 dictionary=[]
 word=""
 str_path=""
@@ -84,7 +82,7 @@ for i in wordlist_str:
         word+=i
         
 backup = False
-if dictionary != []:
+if dictionary != [] and dictionary != ['']:
     chosen_word = ""
     index = -1
     while chosen_word == "" or chosen_word == " " or chosen_word == "\n":
@@ -105,7 +103,11 @@ else:
         else:
             word+=i
     chosen_word=dictionary[np.random.randint(len(dictionary))]
-        
+
+
+canvas_control = Control()
+
+
 str_path=chosen_word.replace(" ","_")
 for l in chosen_word:
     canvas_control.draw_random(ord(l))
